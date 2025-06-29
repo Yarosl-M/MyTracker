@@ -4,7 +4,7 @@
 	{
 		Pending,
 		Open,
-		Closed,
+		Fixed,
 		Duplicate,
 		WontFix,
 		WorksAsIntended,

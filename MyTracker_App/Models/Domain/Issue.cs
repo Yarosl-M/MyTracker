@@ -2,7 +2,8 @@
 {
     public class Issue : Entry
     {
-        public string Title { get; set; }
+        public required string Title { get; set; }
 		public IssueStatus Status { get; set; } = IssueStatus.Pending;
+        public DateTimeOffset? ClosedAt { get; set; } = null;
     }
 }
