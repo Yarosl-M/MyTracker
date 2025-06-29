@@ -3,6 +3,7 @@
 	public enum IssueStatus
 	{
 		Pending,
+		Declined,
 		Open,
 		Fixed,
 		Duplicate,
