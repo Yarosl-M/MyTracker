@@ -11,4 +11,11 @@
 		WorksAsIntended,
 		Invalid,
 	}
+
+	public enum UserRole // ?????
+	{
+		RegularUser,
+		Operator,
+		Admin,
+	}
 }
