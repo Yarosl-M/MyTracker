@@ -8,6 +8,7 @@ namespace MyTracker_App.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
         public MyTrackerDbContext(DbContextOptions<MyTrackerDbContext> options)
             : base(options) { }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
