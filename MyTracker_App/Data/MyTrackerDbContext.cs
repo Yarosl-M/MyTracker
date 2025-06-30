@@ -1,0 +1,22 @@
+﻿using Microsoft.EntityFrameworkCore;
+using MyTracker_App.Models.Domain;
+
+namespace MyTracker_App.Data
+{
+    public class MyTrackerDbContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+        public DbSet<Issue> Issues { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public MyTrackerDbContext(DbContextOptions<MyTrackerDbContext> options)
+            : base(options) { }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Issue>()
+        //        .HasMany(i => i.Messages)
+        //        .WithOne(m => m.Issue)
+        //        .HasForeignKey(m => m.IssueId)
+        //        .IsRequired();
+        //}
+    }
+}

@@ -1,4 +1,6 @@
-﻿namespace MyTracker_App.Models.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MyTracker_App.Models.Domain
 {
     public class Issue : Entry
     {
@@ -8,8 +10,7 @@
         public DateTimeOffset? ClosedAt { get; set; } = null;
         public required User CreatedBy { get; set; }
         public User? AssignedTo { get; set; } = null;
-        
-        public Message FirstMessage { get; set; }
+
         public IList<Message> Messages { get; set; }
     }
 }

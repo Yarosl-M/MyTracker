@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MyTracker_App.Data;
+
 namespace MyTracker_App
 {
     public class Program
@@ -8,6 +11,12 @@ namespace MyTracker_App
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<MyTrackerDbContext>(options =>
+            {
+                options.UseSqlite(
+                    builder.Configuration.GetConnectionString("DefaultSqlite"));
+            });
 
             var app = builder.Build();
 

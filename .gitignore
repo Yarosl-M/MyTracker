@@ -400,3 +400,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 MyTracker_App/wwwroot/css/output.css
+MyTracker_App/db.sqlite
