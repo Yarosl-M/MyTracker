@@ -401,3 +401,5 @@ FodyWeavers.xsd
 *.sln.iml
 MyTracker_App/wwwroot/css/output.css
 MyTracker_App/db.sqlite
+MyTracker_App/db.sqlite-shm
+MyTracker_App/db.sqlite-wal

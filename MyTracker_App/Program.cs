@@ -20,7 +20,12 @@ namespace MyTracker_App
                     builder.Configuration.GetConnectionString("DefaultSqlite"));
             });
 
-            builder.Services.AddIdentity<User, MyTrackerRole>()
+            builder.Services.AddIdentity<User, MyTrackerRole>(
+                options =>
+                {
+                    options.User.RequireUniqueEmail = true;
+                    // that's all for now?? i guess
+                })
                 .AddEntityFrameworkStores<MyTrackerDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -37,6 +42,7 @@ namespace MyTracker_App
             app.UseHttpsRedirection();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapStaticAssets();
