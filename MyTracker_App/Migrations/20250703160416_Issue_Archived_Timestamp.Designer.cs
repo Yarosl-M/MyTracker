@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyTracker_App.Data;
 
@@ -10,9 +11,11 @@ using MyTracker_App.Data;
 namespace MyTracker_App.Migrations
 {
     [DbContext(typeof(MyTrackerDbContext))]
-    partial class MyTrackerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250703160416_Issue_Archived_Timestamp")]
+    partial class Issue_Archived_Timestamp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
