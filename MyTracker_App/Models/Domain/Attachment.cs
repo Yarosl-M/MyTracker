@@ -7,8 +7,8 @@
     /// </summary>
     public class Attachment : Entry
     {
-        public string Filename { get; set; }
-        public string Url { get; set; }
+        public required string Filename { get; set; }
+        public required string Url { get; set; }
         public Message Message { get; set; }
     }
 }
