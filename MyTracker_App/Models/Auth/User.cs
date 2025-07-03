@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MyTracker_App.Models.Domain;
 
-namespace MyTracker_App.Models.Domain
+namespace MyTracker_App.Models.Auth
 {
     [Index(nameof(UserName), IsUnique = true)]
     [Index(nameof(Email), IsUnique = true)]
-    public class User : IdentityUser
+    public class User : IdentityUser<int>
     {
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }

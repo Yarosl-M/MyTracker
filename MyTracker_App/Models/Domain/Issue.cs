@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using MyTracker_App.Models.Auth;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyTracker_App.Models.Domain
 {

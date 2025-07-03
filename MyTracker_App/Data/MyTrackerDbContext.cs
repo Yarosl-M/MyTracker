@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using MyTracker_App.Models.Auth;
 using MyTracker_App.Models.Domain;
 
 namespace MyTracker_App.Data
 {
-    public class MyTrackerDbContext : IdentityDbContext<User>
+    public class MyTrackerDbContext : IdentityDbContext<User,
+        MyTrackerRole, int>
     {
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Message> Messages { get; set; }

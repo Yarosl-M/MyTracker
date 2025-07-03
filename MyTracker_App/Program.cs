@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyTracker_App.Data;
+using MyTracker_App.Models.Auth;
 
 namespace MyTracker_App
 {
@@ -17,6 +19,10 @@ namespace MyTracker_App
                 options.UseSqlite(
                     builder.Configuration.GetConnectionString("DefaultSqlite"));
             });
+
+            builder.Services.AddIdentity<User, MyTrackerRole>()
+                .AddEntityFrameworkStores<MyTrackerDbContext>()
+                .AddDefaultTokenProviders();
 
             var app = builder.Build();
 
