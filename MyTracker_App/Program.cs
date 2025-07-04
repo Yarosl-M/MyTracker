@@ -2,12 +2,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyTracker_App.Data;
 using MyTracker_App.Models.Auth;
+using System.Threading.Tasks;
 
 namespace MyTracker_App
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -24,12 +25,20 @@ namespace MyTracker_App
                 options =>
                 {
                     options.User.RequireUniqueEmail = true;
-                    // that's all for now?? i guess
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
                 })
                 .AddEntityFrameworkStores<MyTrackerDbContext>()
                 .AddDefaultTokenProviders();
 
             var app = builder.Build();
+
+            if (app.Environment.IsDevelopment())
+            {
+                await Seeder.SeedDatabase(app.Services);
+            }   
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
