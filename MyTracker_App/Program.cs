@@ -29,6 +29,7 @@ namespace MyTracker_App
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 6; // already default value though
                 })
                 .AddEntityFrameworkStores<MyTrackerDbContext>()
                 .AddDefaultTokenProviders();
