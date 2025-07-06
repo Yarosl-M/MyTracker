@@ -31,7 +31,7 @@ namespace MyTracker_App.Controllers
             {
                 return RedirectToAction("index", "home");
             }
-            // nnot succedded
+            // not succeeded
             ModelState.AddModelError(string.Empty, "Неверно указаны входные данные.");
             return View(model);
         }
