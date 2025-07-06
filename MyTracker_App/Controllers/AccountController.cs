@@ -18,6 +18,25 @@ namespace MyTracker_App.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var result = await _signInManager.PasswordSignInAsync(
+                model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("index", "home");
+            }
+            // nnot succedded
+            ModelState.AddModelError(string.Empty, "Неверно указаны входные данные.");
+            return View(model);
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             return Content("Logout");
