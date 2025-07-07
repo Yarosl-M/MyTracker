@@ -1,0 +1,39 @@
+@using MyTracker_App.ViewModels.Auth;
+@model SignUpViewModel;
+
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<header class="text-center">
+    <h2 class="text-2xl font-bold uppercase mb-1">Регистрация</h2>
+    <p class="text-amber-300 text-shadow-orange-950">This text shouldn't be red.</p>
+</header>
+<form asp-action="signup" method="post" class="p-6 max-w-xl mx-auto mt-24">
+    @Html.AntiForgeryToken()
+    <div asp-asp-validation-summary="ModelOnly" class="text-red-500"></div>
+    <div class="mb-1">
+        <label asp-for="Email" class="required inline-block text-lg mb-2">Адрес эл. почты</label>
+        <input asp-for="Email" class="border border-gray-200 rounded p-2 w-full"/>
+    </div>
+    <div class="mb-1">
+        <label asp-for="Password" class="required inline-block text-lg mb-2">Пароль</label>
+        <input asp-for="Password" class="border border-gray-200 rounded p-2 w-full"/>
+        <span asp-validation-for="Password" class="italic text-red-500"></span>
+    </div>
+    <div class="mb-1">
+        <label asp-for="PasswordConfirmation" class="required inline-block text-lg mb-2">Подтвердите пароль</label>
+        <input asp-for="PasswordConfirmation" class="border border-gray-200 rounded p-2 w-full"/>
+        <span asp-validation-for="PasswordConfirmation" class="italic text-red-500"></span>
+    </div>
+    <div>
+        <input type="submit" value="Зарегистрироваться" class="bg-red-100 cursor-pointer text-red-900 rounded py-2 px-4">
+        <p class="italic">Уже есть учётная запись?</p>
+        <p><a asp-controller="account" asp-action="login" class="text-red-500 underline">Войти</a></p>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");}
+}

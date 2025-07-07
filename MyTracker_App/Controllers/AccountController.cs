@@ -42,9 +42,20 @@ namespace MyTracker_App.Controllers
             return Content("Logout");
         }
 
+        [HttpGet]
         public async Task<IActionResult> SignUp()
         {
+            return View();
             return Content("SignUp");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> SignUp(SignUpViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            return Content("SignedUp");
         }
     }
 }

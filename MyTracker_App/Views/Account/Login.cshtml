@@ -18,9 +18,9 @@
     <div class="mb-1">
         <label asp-for="Password" class="required inline-block text-lg mb-2">Пароль</label>
         <input asp-for="Password" class="border border-gray-200 rounded p-2 w-full"/>
-        <span asp-validation-for="Password" class="idk"></span>
+        <span asp-validation-for="Password" class="italic text-red-500"></span>
     </div>
-    <div class="mb-2">
+    <div>
         <input type="submit" value="Войти" class="bg-red-100 cursor-pointer text-red-900 rounded py-2 px-4">
         <p class="italic">Нет учётной записи?</p>
         <p><a asp-controller="account" asp-action="signup" class="text-red-500 underline">Зарегистрироваться</a></p>

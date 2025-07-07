@@ -2,7 +2,7 @@
 @inject SignInManager<MyTracker_App.Models.Auth.User> signInManager;
 
 <ul class="navbar-nav ms-auto align-items-center">
-    @if (signInManager.IsSignedIn(User))
+    @if (signInManager.IsSignedIn(User)) @* logged in *@
     {
         <li class="nav-item">
             <form asp-controller="account" asp-action="logout" method="post" class="d-inline">
@@ -10,7 +10,7 @@
                 <button type="submit" class="btn btn-link nav-link text-dark p-0">Выход</button>
             </form>
         </li>
-    } else
+    } else @* not logged in *@
     {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="account" asp-action="login">
