@@ -7,7 +7,9 @@ namespace MyTracker_App.ViewModels.Auth
         [Required(ErrorMessage = "Поле \"E-mail\" обязательно для ввода")]
         [EmailAddress]
         public string Email { get; set; }
+
         [Display(Name = "Имя")]
+        [Required(ErrorMessage = "Поле \"Имя\" обязательно для ввода")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Поле \"Пароль\" обязательно для ввода")]
         [StringLength(50, MinimumLength = 6,
