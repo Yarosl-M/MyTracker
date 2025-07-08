@@ -38,8 +38,15 @@ namespace MyTracker_App.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
+            if (_signInManager.IsSignedIn(User))
+            {
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("index", "home");
+            }
+            return RedirectToAction("index", "home");
             return Content("Logout");
         }
 
