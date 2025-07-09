@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using MyTracker_App.Models.Domain;
 
 namespace MyTracker_App.Models.Auth
 {

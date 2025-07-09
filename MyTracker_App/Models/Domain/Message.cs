@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MyTracker_App.Models.Domain
+﻿namespace MyTracker_App.Models.Domain
 {
     public class Message : Entry
     {

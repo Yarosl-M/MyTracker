@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyTracker_App.Data;
 using MyTracker_App.Models.Auth;
-using System.Threading.Tasks;
 
 namespace MyTracker_App
 {

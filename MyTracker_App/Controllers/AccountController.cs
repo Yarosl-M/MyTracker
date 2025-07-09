@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using MyTracker_App.Models.Auth;
 using MyTracker_App.Models.Domain;
 using MyTracker_App.ViewModels.Auth;
-using System.Security.Claims;
 
 namespace MyTracker_App.Controllers
 {
