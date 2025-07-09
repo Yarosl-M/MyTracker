@@ -1,10 +1,27 @@
 ﻿@* Кнопки для входа в систему, регистрации и выхода, отображающиеся на страницах *@
 @using Microsoft.AspNetCore.Identity;
+@using MyTracker_App.Models.Domain;
 @inject SignInManager<MyTracker_App.Models.Auth.User> signInManager;
 
 <ul class="navbar-nav ms-auto align-items-center">
     @if (signInManager.IsSignedIn(User)) @* logged in *@
     {
+        @if (User.IsInRole(UserRole.Operator.ToString())
+        || User.IsInRole(UserRole.Admin.ToString()))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="issue" asp-action="pending">
+                    Тикеты
+                </a>        
+            </li>
+        }
+        @if (User.IsInRole(UserRole.Admin.ToString())){
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="account" asp-action="dashboard">
+                    Панель управления
+                </a>
+            </li>
+        }
         <li class="nav-item">
             <form asp-controller="account" asp-action="logout" method="post" class="d-inline">
                 @Html.AntiForgeryToken()

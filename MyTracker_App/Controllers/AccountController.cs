@@ -43,6 +43,7 @@ namespace MyTracker_App.Controllers
         {
             if (_signInManager.IsSignedIn(User))
             {
+                var user = await _userManager.GetUserAsync(User);
                 await _signInManager.SignOutAsync();
                 return RedirectToAction("index", "home");
             }
@@ -64,14 +65,29 @@ namespace MyTracker_App.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            var user = new User()
+            // test stuff
+            UserRole role;
+            if (model.Name.StartsWith('#')) // # for operator
             {
-                Email = model.Email,
-                UserName = model.Email,
-                NormalizedEmail = model.Email.ToUpper(),
-                NormalizedUserName = model.Email.ToUpper(),
-                DisplayName = model.Name,
-            };
+                role = UserRole.Operator;
+                //model.Name = string.Concat(model.Name.Skip(1));
+                model.Name = model.Name.Substring(1);
+            }
+            else if (model.Name.StartsWith('$')) // $ for admin
+            {
+                role = UserRole.Admin;
+                model.Name = model.Name.Substring(1);
+            }
+            else role = UserRole.RegularUser;
+
+                var user = new User()
+                {
+                    Email = model.Email,
+                    UserName = model.Email,
+                    NormalizedEmail = model.Email.ToUpper(),
+                    NormalizedUserName = model.Email.ToUpper(),
+                    DisplayName = model.Name,
+                };
             var result = await _userManager.CreateAsync(user,
                 model.Password);
 
@@ -84,7 +100,10 @@ namespace MyTracker_App.Controllers
                         new MyTrackerRole(UserRole.RegularUser.ToString()));
                 }
 
-                await _userManager.AddToRoleAsync(user, UserRole.RegularUser.ToString());
+                await _userManager.AddToRoleAsync(user,
+                    role.ToString());
+
+                //await _userManager.AddToRoleAsync(user, UserRole.RegularUser.ToString());
                 await _signInManager.SignInAsync(user, isPersistent: true);
 
                 return RedirectToAction("index", "home");
