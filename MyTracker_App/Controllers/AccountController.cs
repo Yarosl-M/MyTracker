@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MyTracker_App.Models.Auth;
 using MyTracker_App.Models.Domain;
@@ -118,5 +119,13 @@ namespace MyTracker_App.Controllers
 
             return Content("SignedUp");
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Dashboard()
+        {
+            return View();
+        }
+
     }
 }
