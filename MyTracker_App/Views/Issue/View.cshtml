@@ -1,0 +1,29 @@
+@using MyTracker_App.Models.Domain;
+@model Issue;
+@{
+    ViewData["Title"] = Model.Title;
+    Message first_message = Model.Messages.MinBy(m => m.CreatedAt);
+}
+
+<h2>
+    @Model.Title
+</h2>
+@{
+    var split = first_message.Text.Trim().Split('\n').Where(
+        x => !string.IsNullOrWhiteSpace(x)
+    );
+}
+@foreach (string s in split)
+{
+    <p class="mt-1">@s</p>
+}
+
+@foreach (Message m in Model.Messages.Skip(1))
+{
+    var split_msg = m.Text.Trim().Split('\n')
+        .Where(x => !string.IsNullOrWhiteSpace(x));
+    foreach (string s in split_msg)
+    {
+        <p class="mt-1">@s</p>
+    }
+}

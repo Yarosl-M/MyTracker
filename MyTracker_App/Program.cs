@@ -33,6 +33,16 @@ namespace MyTracker_App
                 .AddEntityFrameworkStores<MyTrackerDbContext>()
                 .AddDefaultTokenProviders();
 
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "";
+                options.Events.OnRedirectToAccessDenied = context =>
+                {
+                    context.Response.StatusCode = 403;
+                    return Task.CompletedTask; // todo: other stuff later
+                };
+            });
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())

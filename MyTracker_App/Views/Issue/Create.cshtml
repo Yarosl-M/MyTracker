@@ -1,0 +1,37 @@
+@using MyTracker_App.ViewModels.Issue;
+@model CreateIssueViewModel;
+@{
+    ViewData["Title"] = "Создание тикета";
+    //Layout = "~/Views/Shared/_AccountLayout.cshtml"; // just a different one
+    // maybe won't even need a different layout? not the default one okay
+}
+
+<header class="text-center">
+    <h2 class="text-2xl font-bold uppercase mb-1">Создать новый тикет</h2>
+</header>
+
+<form asp-action="create" method="post" class="p-6 max-w-xl mx-auto mt-24">
+    @Html.AntiForgeryToken()
+    <div asp-validation-summary="ModelOnly" class="text-red-500"></div>
+    <div class="mb-1">
+        <label asp-for="Title" class="required inline-block text-lg mb-2">Заголовок</label>
+        <input asp-for="Title" class="border border-gray-200 rounded p-2 w-full"
+        placeholder="Краткое (до 300 символов) описание проблемы"/>
+        <span asp-validation-for="Title" class="italic text-red-500"></span>
+    </div>
+    <div class="mb-1">
+        <label asp-for="Text" class="required inline-block text-lg mb-2">Описание</label>
+        <textarea asp-for="Text" class="border border-gray-200 rounded p-2 w-full"
+        placeholder="Более подробное (100—1000 символов) описание проблемы: что пошло не так, ситуация, в которой возникла ошибка, а также: информация о системе и версии используемого продукта">
+        </textarea>
+        <span asp-validation-for="Text" class="italic text-red-500"></span>
+    </div>
+        <div></div>
+        <input type="submit" value="Отправить на проверку" class="bg-red-100 cursor-pointer text-red-900 rounded py-2 px-4">
+        <p class="italic text-sm">Ваше сообщение будет отправлено на проверку модераторами и опубликовано в ближайшее время</p>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");}
+}
