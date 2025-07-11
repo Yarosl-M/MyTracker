@@ -13,6 +13,12 @@ namespace MyTracker_App.Data
         public DbSet<Attachment> Attachments { get; set; }
         public MyTrackerDbContext(DbContextOptions<MyTrackerDbContext>
             options) : base(options) { }
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    builder.Entity<Issue>()
+        //        .HasMany(i => i.Tags)
+        //        .WithMany(t => t.Issues);
+        //}
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
         //    modelBuilder.Entity<Issue>()

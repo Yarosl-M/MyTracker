@@ -12,5 +12,6 @@ namespace MyTracker_App.Models.Domain
         public User? AssignedTo { get; set; } = null;
 
         public IList<Message> Messages { get; set; }
+        public IList<Tag> Tags { get; set; }
     }
 }
