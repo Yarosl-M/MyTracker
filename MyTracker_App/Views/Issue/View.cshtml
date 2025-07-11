@@ -4,26 +4,34 @@
     ViewData["Title"] = Model.Title;
     Message first_message = Model.Messages.MinBy(m => m.CreatedAt);
 }
+<div class="min-h-screen grid grid-cols-4 gap-4 ml-8">
+    <div class="col-span-3 space-y-4"> @* все сообщения в т. ч. первое *@
+        <div class="border border-solid rounded-xs mb-2"> @* первое сообщение (начало тикета) *@
+            <h2>
+                @Model.Title
+            </h2>
+            @{
+                var split = first_message.Text.Trim().Split('\n').Where(
+                    x => !string.IsNullOrWhiteSpace(x)
+                );
+            }
+            @foreach (string s in split)
+            {
+                <p class="mt-1">@s</p>
+            }
+        </div>
 
-<h2>
-    @Model.Title
-</h2>
-@{
-    var split = first_message.Text.Trim().Split('\n').Where(
-        x => !string.IsNullOrWhiteSpace(x)
-    );
-}
-@foreach (string s in split)
-{
-    <p class="mt-1">@s</p>
-}
-
-@foreach (Message m in Model.Messages.Skip(1))
-{
-    var split_msg = m.Text.Trim().Split('\n')
-        .Where(x => !string.IsNullOrWhiteSpace(x));
-    foreach (string s in split_msg)
-    {
-        <p class="mt-1">@s</p>
-    }
-}
+        @foreach (Message m in Model.Messages.Skip(1))
+        {
+            var split_msg = m.Text.Trim().Split('\n')
+                .Where(x => !string.IsNullOrWhiteSpace(x));
+            foreach (string s in split_msg)
+            {
+                <p class="mt-1">@s</p>
+            }
+        }
+    </div>
+    <div class="flex flex-col col-span-1 bg-slate-400 p-4 border border-solid rounded-xs">
+        <p>Something later</p>
+    </div>
+</div>
